@@ -1,4 +1,5 @@
 export type Notetype{
-    id:string;
+    id:number;
     content:string;
+    Headline:string;
 }

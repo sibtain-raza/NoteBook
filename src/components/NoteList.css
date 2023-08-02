@@ -1,0 +1,12 @@
+.notes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(287px,1fr));
+    gap: 1em;
+    padding: 4em;
+    }
+  
+    @media (max-width:600px){
+      .notes-list{
+          grid-template-columns: repeat(auto-fill,minmax(287,1fr));
+      }
+    }

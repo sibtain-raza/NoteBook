@@ -1,13 +1,29 @@
-function Notes() {
+// import { Notetype } from "../services/types";
+import "./Notes.css";
+import deleteImage from "../assets/delete-svgrepo-com.svg";
+import editImage from "../assets/edit-svgrepo-com.svg";
+interface Props {
+  id: number;
+  content: string;
+  Headline: string;
+}
+
+function Notes({ id, content, Headline }: Props) {
   return (
-    <div className="grid-item">
-      <p>
-        Elevate your process writing to new heights with the assistance of our
-        AI Text Generator. Scribe AI offers grammar and style suggestions,
-        helping you refine your work and ensure a polished final product. Let AI
-        be your writing partner, making your words shine. 3. Build & share
-        documentation — fast Cut your process documentation .
-      </p>
+    <div className="notes" key={id}>
+      <p>{content}</p>
+      <div className="bottom">
+        <h5>{Headline}...</h5>
+        <button className="btn1 edit" onClick={() => console.log(id, "edit")}>
+          <img src={editImage} />
+        </button>
+        <button
+          className="btn1 delete"
+          onClick={() => console.log(id, "delete")}
+        >
+          <img src={deleteImage} />
+        </button>
+      </div>
     </div>
   );
 }
