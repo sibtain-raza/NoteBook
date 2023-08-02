@@ -1,25 +1,39 @@
-// import { Notetype } from "../services/types";
+import { Notetype } from "../services/types";
 import "./Notes.css";
 import deleteImage from "../assets/delete-svgrepo-com.svg";
 import editImage from "../assets/edit-svgrepo-com.svg";
 interface Props {
-  id: number;
-  content: string;
-  Headline: string;
+  Notes: Notetype;
+  ondelete: (id: number) => void;
+  onedit: (id: number) => void;
+  onClickedBox: (id: number) => void;
 }
 
-function Notes({ id, content, Headline }: Props) {
+function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
   return (
-    <div className="notes" key={id}>
-      <p>{content}</p>
+    <div
+      className="notes"
+      key={Notes.id}
+      onClick={() => onClickedBox(Notes.id)}
+    >
+      <p>{Notes.content}</p>
       <div className="bottom">
-        <h5>{Headline}...</h5>
-        <button className="btn1 edit" onClick={() => console.log(id, "edit")}>
+        <h5>{Notes.Headline}...</h5>
+        <button
+          className="btn1 edit"
+          onClick={(event) => {
+            event.stopPropagation();
+            onedit(Notes.id);
+          }}
+        >
           <img src={editImage} />
         </button>
         <button
           className="btn1 delete"
-          onClick={() => console.log(id, "delete")}
+          onClick={(event) => {
+            event.stopPropagation();
+            ondelete(Notes.id);
+          }}
         >
           <img src={deleteImage} />
         </button>
@@ -28,4 +42,4 @@ function Notes({ id, content, Headline }: Props) {
   );
 }
 
-export default Notes;
+export default Note;
