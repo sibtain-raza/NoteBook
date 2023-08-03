@@ -1,5 +1,6 @@
 form{
     position: relative;
+    background: white;
 }
 
 textarea{
@@ -8,7 +9,8 @@ textarea{
     
     padding: 10px;
     padding-top: 30px;
-    width: 95%;
+    width: 58vw;
+    height: 30vh;
 }
 
 input{
@@ -16,7 +18,7 @@ input{
     border-radius: 10px;
     padding-top: 30px;
     font-size: large;
-    width: 95%;
+    width: 58vw;
 }
 
 label{
@@ -28,24 +30,42 @@ label{
 
 .btn2{
     padding: 10px 20px 10px 20px;
-    font-size: large;
-    border: 2px solid violet;
-    margin-right: 10px;
-}
-
-.btn1{  
-    padding: 10px 20px 10px 20px;
-    font-size: large;
+    font-size: 1em;
     border: 2px solid violet;
     margin-left: 10px;
 }
 
-.btn{
-    position: absolute;
-    right: 20px;
-    margin: 10px;
+.btn1{  
+    padding: 10px 20px 10px 20px;
+    font-size: 1em;
+    border: 2px solid violet;
+    
 }
 
-.modal{
-    height: 55%;
+.btn{
+    position: absolute;
+    right: 0px;
+    margin: 5px;
+}
+
+.modaladd{
+    height: 60vh;
+    position: relative;
+    background-color: #FFF;
+    padding: 50px;
+    width: 60%;
+    border-radius: 20px;
+}
+
+
+.overlayadd{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: grid;
+    place-items: center;
+    z-index: 3;
 }

@@ -30,7 +30,7 @@ function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
       onClick={() => onClickedBox(Notes.id)}
     >
       {Headline}
-      <p>{Content}</p>
+      {Content}
       <div className="bottom">
         <button
           className="btn3 edit"

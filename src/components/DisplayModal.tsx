@@ -16,17 +16,21 @@ function DisplayModal({ note, isOpen, handleClose, onConfirm }: Props) {
   return (
     <div className="overlay">
       <div className="modal">
-        <button>
-          <img src={editImage} />
-        </button>
-        <button onClick={() => onConfirm(note.id)}>
-          <img src={deleteImage} />
-        </button>
-        <button onClick={() => handleClose(note.id)}>
-          <img src={closeImage} />
-        </button>
+        <div className="buttonclass">
+          <button>
+            <img src={editImage} />
+          </button>
+          <button onClick={() => onConfirm(note.id)}>
+            <img src={deleteImage} />
+          </button>
+          <button onClick={() => handleClose(note.id)}>
+            <img src={closeImage} />
+          </button>
+        </div>
         <h3>{note.Headline}</h3>
-        <p>{note.content}</p>
+        <div className="content">
+          <p>{note.content}</p>
+        </div>
       </div>
     </div>
   );
