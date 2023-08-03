@@ -21,6 +21,7 @@ function DisplayModal({ note, handleClose, deleteNote, editNote }: Props) {
               onClick={(e) => {
                 e.stopPropagation();
                 editNote(note.id);
+                handleClose();
               }}
             />
           </button>
