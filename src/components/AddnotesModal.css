@@ -1,0 +1,51 @@
+form{
+    position: relative;
+}
+
+textarea{
+    resize: none;
+    border-radius: 10px;
+    
+    padding: 10px;
+    padding-top: 30px;
+    width: 95%;
+}
+
+input{
+    padding: 10px;
+    border-radius: 10px;
+    padding-top: 30px;
+    font-size: large;
+    width: 95%;
+}
+
+label{
+    position: relative;
+    top: 30px;
+    left: 20px;
+    background: white;
+}
+
+.btn2{
+    padding: 10px 20px 10px 20px;
+    font-size: large;
+    border: 2px solid violet;
+    margin-right: 10px;
+}
+
+.btn1{  
+    padding: 10px 20px 10px 20px;
+    font-size: large;
+    border: 2px solid violet;
+    margin-left: 10px;
+}
+
+.btn{
+    position: absolute;
+    right: 20px;
+    margin: 10px;
+}
+
+.modal{
+    height: 55%;
+}

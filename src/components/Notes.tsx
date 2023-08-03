@@ -33,7 +33,7 @@ function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
       <p>{Content}</p>
       <div className="bottom">
         <button
-          className="btn1 edit"
+          className="btn3 edit"
           onClick={(event) => {
             event.stopPropagation();
             onedit(Notes.id);
@@ -42,7 +42,7 @@ function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
           <img src={editImage} />
         </button>
         <button
-          className="btn1 delete"
+          className="btn3 delete"
           onClick={(event) => {
             event.stopPropagation();
             ondelete(Notes.id);
