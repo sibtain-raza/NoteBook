@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import "./AddnotesModal.css";
 import { Notetype } from "../services/types";
 interface Props {
@@ -14,25 +14,33 @@ function AddNotesModal({
   editnote,
   editableNote = null,
 }: Props) {
-  const refheading = useRef<HTMLInputElement | null>(null);
-  const refContent = useRef<HTMLTextAreaElement | null>(null);
+  const [content, setContent] = useState("");
+  const [heading, setHeading] = useState("");
+
+  useEffect(() => {
+    if (editableNote) {
+      setContent(editableNote.content);
+      setHeading(editableNote.Headline);
+    }
+  }, [editableNote]);
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (!refContent.current?.value || !refheading.current?.value) {
+    if (!content || !heading) {
       return;
     }
     if (editableNote && editnote) {
       editnote({
         id: editableNote.id,
-        content: refContent.current.value,
-        Headline: refheading.current.value,
+        content: content,
+        Headline: heading,
       });
     }
     if (addnote) {
       addnote({
         id: Date.now(),
-        content: refContent.current.value,
-        Headline: refheading.current.value,
+        content: content,
+        Headline: content,
       });
     }
     onCancel();
@@ -49,7 +57,8 @@ function AddNotesModal({
           <label htmlFor="heading">Title</label>
           <br />
           <input
-            ref={refheading}
+            onChange={(e) => setHeading(e.target.value)}
+            value={heading}
             type="text"
             id="heading"
             name="heading"
@@ -59,7 +68,12 @@ function AddNotesModal({
 
           <label htmlFor="content">Description</label>
           <br />
-          <textarea ref={refContent} id="content" name="content" />
+          <textarea
+            onChange={(e) => setContent(e.target.value)}
+            id="content"
+            name="content"
+            value={content}
+          />
           <br />
 
           <div className="btn">
