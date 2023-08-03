@@ -40,7 +40,7 @@ function AddNotesModal({
       addnote({
         id: Date.now(),
         content: content,
-        Headline: content,
+        Headline: heading,
       });
     }
     onCancel();

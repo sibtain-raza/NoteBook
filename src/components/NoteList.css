@@ -20,6 +20,11 @@
       height: 210px;
     }
 
+    .add-notes:hover{
+      box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 1);
+      border: 1px solid black;
+    }
+
     .add-notes span{
       display: inline-flex;
       position: absolute;

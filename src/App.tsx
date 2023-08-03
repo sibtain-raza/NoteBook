@@ -4,11 +4,13 @@ import NavBar from "./components/NavBar";
 import NoteList from "./components/NoteList";
 import { Notetype } from "./services/types";
 import AddNotesModal from "./components/AddNotesModal";
+import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
 
 function App() {
   const [notes, setNotes] = useState<Notetype[]>([]);
 
   const [isEditBoxOpen, setIsEditBoxOpen] = useState(false);
+  const [isconfirmBoxOpen, setIsconfirmBoxOpen] = useState(true);
   const [editingNotes, setEditingNotes] = useState<Notetype | null>(null);
 
   const handleDelete = (id: number) => {
@@ -48,6 +50,9 @@ function App() {
         editNote={(id) => editTONote(id)}
         addNote={(Note) => addNotes(Note)}
       />
+      {isconfirmBoxOpen && (
+        <ConfirmDeleteModal onclick={() => setIsconfirmBoxOpen(false)} />
+      )}
     </>
   );
 }

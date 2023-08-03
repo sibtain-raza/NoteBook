@@ -1,0 +1,61 @@
+.modalconfirm{
+    height: 30vh;
+    position: relative;
+    background-color: #FFF;
+    padding: 40px;
+    width: 28vw;
+    border-radius: 20px;
+
+}
+
+
+.overlayconfirm{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: grid;
+    place-items: center;
+    z-index: 200;
+}
+
+.modalconfirm p{
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 40px;
+}
+
+.modalconfirm img {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.modalconfirm h5 {
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+}
+
+button{
+    width: 129px;
+    height: 41px;
+    border: 1px solid black;
+    margin: 20px 10px 0 10px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+.btnClass{
+    text-align: center;
+}
+
+.archiveBtn{
+    background: rgba(3, 194, 255,1);
+}
+.deleteBtn{
+    background: rgba(255,94,3,1);
+}
