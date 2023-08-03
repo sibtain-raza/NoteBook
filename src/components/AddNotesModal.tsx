@@ -2,12 +2,18 @@ import { useRef } from "react";
 import "./AddnotesModal.css";
 import { Notetype } from "../services/types";
 interface Props {
-  isAddBoxOpen: boolean;
   onCancel: () => void;
-  addnote: (Notes: Notetype) => void;
+  addnote?: (Notes: Notetype) => void;
+  editnote?: (Notes: Notetype) => void;
+  editableNote?: Notetype | null;
 }
 
-function AddNotesModal({ isAddBoxOpen, onCancel, addnote }: Props) {
+function AddNotesModal({
+  onCancel,
+  addnote,
+  editnote,
+  editableNote = null,
+}: Props) {
   const refheading = useRef<HTMLInputElement | null>(null);
   const refContent = useRef<HTMLTextAreaElement | null>(null);
   const handleSubmit = (event: React.FormEvent) => {
@@ -15,17 +21,22 @@ function AddNotesModal({ isAddBoxOpen, onCancel, addnote }: Props) {
     if (!refContent.current?.value || !refheading.current?.value) {
       return;
     }
-
-    addnote({
-      id: Date.now(),
-      content: refContent.current.value,
-      Headline: refheading.current.value,
-    });
-
+    if (editableNote && editnote) {
+      editnote({
+        id: editableNote.id,
+        content: refContent.current.value,
+        Headline: refheading.current.value,
+      });
+    }
+    if (addnote) {
+      addnote({
+        id: Date.now(),
+        content: refContent.current.value,
+        Headline: refheading.current.value,
+      });
+    }
     onCancel();
   };
-
-  if (!isAddBoxOpen) return null;
 
   return (
     <div className="overlayadd">

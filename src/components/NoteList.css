@@ -16,7 +16,8 @@
       position: relative;
       box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.7);
       border-radius: 17px;
-        margin-bottom: 1em;
+      margin-bottom: 1em;
+      height: 210px;
     }
 
     .add-notes span{

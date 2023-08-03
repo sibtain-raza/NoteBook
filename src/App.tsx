@@ -3,6 +3,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import NoteList from "./components/NoteList";
 import { Notetype } from "./services/types";
+import AddNotesModal from "./components/AddNotesModal";
 
 function App() {
   const content = `Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur sollicitudin, nisl a vehicula egestas, nisi eros faucibus mi, lacinia volutpat enim nunc quis metus. Suspendisse potenti. Phasellus at nulla sit amet quam tempor blandit id ut diam. Fusce dapibus, arcu eget eleifend dignissim, justo tortor vulputate orci, ac auctor odio nisi ut felis. In maximus consectetur blandit. Donec justo eros, fringilla ut tincidunt nec, placerat id velit. Pellentesque rutrum, nisl at condimentum ultrices, purus nibh ornare lorem, vel pharetra tortor elit id velit. Nulla volutpat, ligula eu luctus pretium, enim tellus condimentum nisi, non commodo nulla mauris eget nunc. Aliquam sapien felis, faucibus viverra hendrerit ac, scelerisque nec dolor. Proin quis mi eget ligula finibus ultricies sit amet ut turpis. Nullam bibendum ligula finibus neque eleifend faucibus. Pellentesque quis elementum ipsum. Donec vel felis ligula. Donec quis dui purus. Morbi sit amet vestibulum massa.
@@ -20,8 +21,22 @@ function App() {
 
   const [notes, setNotes] = useState([...dummynotes]);
 
+  const [isEditBoxOpen, setIsEditBoxOpen] = useState(false);
+  const [editingNotes, setEditingNotes] = useState<Notetype | null>(null);
+
   const handleDelete = (id: number) => {
     setNotes(notes.filter((note) => note.id != id));
+  };
+
+  const editTONote = (id: number) => {
+    setIsEditBoxOpen(true);
+    const notetobeEdited = notes.filter((note) => note.id === id);
+    if (notetobeEdited) setEditingNotes(notetobeEdited[0]);
+  };
+
+  const editNote = (Note: Notetype) => {
+    setNotes(notes.map((note) => (Note.id == note.id ? Note : note)));
+    setEditingNotes(null);
   };
 
   const addNotes = (Note: Notetype) => {
@@ -33,10 +48,17 @@ function App() {
   return (
     <>
       <NavBar />
+      {isEditBoxOpen && (
+        <AddNotesModal
+          onCancel={() => setIsEditBoxOpen(false)}
+          editableNote={editingNotes}
+          editnote={editNote}
+        />
+      )}
       <NoteList
         notes={notes}
         deleteNote={(id) => handleDelete(id)}
-        editNote={(id) => console.log(id)}
+        editNote={(id) => editTONote(id)}
         addNote={(Note) => addNotes(Note)}
       />
     </>

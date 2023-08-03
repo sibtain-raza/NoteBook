@@ -24,11 +24,12 @@ function NoteList({ notes, deleteNote, editNote, addNote }: Props) {
   return (
     <div className="notes-list" key={"note-list"}>
       <div className="add-notes" onClick={handleADD}>
-        <AddNotesModal
-          isAddBoxOpen={isAddBoxOpen}
-          onCancel={handleADDCancel}
-          addnote={(Note) => addNote(Note)}
-        />
+        {isAddBoxOpen && (
+          <AddNotesModal
+            onCancel={handleADDCancel}
+            addnote={(Note) => addNote(Note)}
+          />
+        )}
         <span>
           <img src={addImage} />
           <h3>Add Notes</h3>
