@@ -2,6 +2,7 @@ import { Notetype } from "../services/types";
 import "./DisplayModal.css";
 import deleteImage from "../assets/delete-svgrepo-com.svg";
 import closeImage from "../assets/close-svgrepo-com.svg";
+import editImage from "../assets/edit-svgrepo-com.svg";
 interface Props {
   note: Notetype;
   isOpen: boolean;
@@ -15,11 +16,14 @@ function DisplayModal({ note, isOpen, handleClose, onConfirm }: Props) {
   return (
     <div className="overlay">
       <div className="modal">
-        <button onClick={() => handleClose(note.id)}>
-          <img src={closeImage} />
+        <button>
+          <img src={editImage} />
         </button>
         <button onClick={() => onConfirm(note.id)}>
           <img src={deleteImage} />
+        </button>
+        <button onClick={() => handleClose(note.id)}>
+          <img src={closeImage} />
         </button>
         <h3>{note.Headline}</h3>
         <p>{note.content}</p>

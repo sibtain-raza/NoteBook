@@ -10,15 +10,28 @@ interface Props {
 }
 
 function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
+  const Headline =
+    Notes.Headline.length < 28 ? (
+      <h5>{Notes.Headline}</h5>
+    ) : (
+      <h5>{Notes.Headline.slice(0, 28)}...</h5>
+    );
+
+  const Content =
+    Notes.content.length < 175 ? (
+      <p>{Notes.content}</p>
+    ) : (
+      <p>{Notes.content.slice(0, 175)}....</p>
+    );
   return (
     <div
       className="notes"
       key={Notes.id}
       onClick={() => onClickedBox(Notes.id)}
     >
-      <p>{Notes.content}</p>
+      {Headline}
+      <p>{Content}</p>
       <div className="bottom">
-        <h5>{Notes.Headline}...</h5>
         <button
           className="btn1 edit"
           onClick={(event) => {
