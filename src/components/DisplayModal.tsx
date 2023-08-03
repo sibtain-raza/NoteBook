@@ -5,25 +5,34 @@ import closeImage from "../assets/close-svgrepo-com.svg";
 import editImage from "../assets/edit-svgrepo-com.svg";
 interface Props {
   note: Notetype;
-  isOpen: boolean;
-  handleClose: (id: number) => void;
-  onConfirm: (id: number) => void;
+  handleClose: () => void;
+  deleteNote: (id: number) => void;
+  editNote: (id: number) => void;
 }
 
-function DisplayModal({ note, isOpen, handleClose, onConfirm }: Props) {
-  if (!isOpen) return null;
-
+function DisplayModal({ note, handleClose, deleteNote, editNote }: Props) {
   return (
     <div className="overlay">
       <div className="modal">
         <div className="buttonclass">
           <button>
-            <img src={editImage} />
+            <img
+              src={editImage}
+              onClick={(e) => {
+                e.stopPropagation();
+                editNote(note.id);
+              }}
+            />
           </button>
-          <button onClick={() => onConfirm(note.id)}>
+          <button onClick={() => deleteNote(note.id)}>
             <img src={deleteImage} />
           </button>
-          <button onClick={() => handleClose(note.id)}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClose();
+            }}
+          >
             <img src={closeImage} />
           </button>
         </div>

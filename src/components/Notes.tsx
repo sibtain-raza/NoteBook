@@ -2,14 +2,16 @@ import { Notetype } from "../services/types";
 import "./Notes.css";
 import deleteImage from "../assets/delete-svgrepo-com.svg";
 import editImage from "../assets/edit-svgrepo-com.svg";
+import { useState } from "react";
+import DisplayModal from "./DisplayModal";
 interface Props {
   Notes: Notetype;
-  ondelete: (id: number) => void;
-  onedit: (id: number) => void;
-  onClickedBox: (id: number) => void;
+  deleteNote: (id: number) => void;
+  editNote: (id: number) => void;
 }
 
-function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
+function Note({ Notes, deleteNote, editNote }: Props) {
+  const [showModal, setShowModal] = useState(false);
   const Headline =
     Notes.Headline.length < 28 ? (
       <h5>{Notes.Headline}</h5>
@@ -24,11 +26,15 @@ function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
       <p>{Notes.content.slice(0, 175)}....</p>
     );
   return (
-    <div
-      className="notes"
-      key={Notes.id}
-      onClick={() => onClickedBox(Notes.id)}
-    >
+    <div className="notes" key={Notes.id} onClick={() => setShowModal(true)}>
+      {showModal && (
+        <DisplayModal
+          note={Notes}
+          handleClose={() => setShowModal(false)}
+          deleteNote={deleteNote}
+          editNote={(id) => editNote(id)}
+        />
+      )}
       {Headline}
       {Content}
       <div className="bottom">
@@ -36,7 +42,7 @@ function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
           className="btn3 edit"
           onClick={(event) => {
             event.stopPropagation();
-            onedit(Notes.id);
+            editNote(Notes.id);
           }}
         >
           <img src={editImage} />
@@ -45,7 +51,7 @@ function Note({ Notes, ondelete, onedit, onClickedBox }: Props) {
           className="btn3 delete"
           onClick={(event) => {
             event.stopPropagation();
-            ondelete(Notes.id);
+            deleteNote(Notes.id);
           }}
         >
           <img src={deleteImage} />

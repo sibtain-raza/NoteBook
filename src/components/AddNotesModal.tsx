@@ -1,17 +1,27 @@
 import { useRef } from "react";
 import "./AddnotesModal.css";
+import { Notetype } from "../services/types";
 interface Props {
   isAddBoxOpen: boolean;
   onCancel: () => void;
+  addnote: (Notes: Notetype) => void;
 }
 
-function AddNotesModal({ isAddBoxOpen, onCancel }: Props) {
+function AddNotesModal({ isAddBoxOpen, onCancel, addnote }: Props) {
   const refheading = useRef<HTMLInputElement | null>(null);
   const refContent = useRef<HTMLTextAreaElement | null>(null);
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(refheading.current?.value);
-    console.log(refContent.current?.value);
+    if (!refContent.current?.value || !refheading.current?.value) {
+      return;
+    }
+
+    addnote({
+      id: Date.now(),
+      content: refContent.current.value,
+      Headline: refheading.current.value,
+    });
+
     onCancel();
   };
 
@@ -27,7 +37,13 @@ function AddNotesModal({ isAddBoxOpen, onCancel }: Props) {
         >
           <label htmlFor="heading">Title</label>
           <br />
-          <input ref={refheading} type="text" id="heading" name="heading" />
+          <input
+            ref={refheading}
+            type="text"
+            id="heading"
+            name="heading"
+            required
+          />
           <br />
 
           <label htmlFor="content">Description</label>

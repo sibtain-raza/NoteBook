@@ -7,24 +7,28 @@ import { useState } from "react";
 
 interface Props {
   notes: Notetype[];
-  ondelete: (id: number) => void;
-  onedit: (id: number) => void;
-  onClickedBox: (id: number) => void;
+  deleteNote: (id: number) => void;
+  editNote: (id: number) => void;
+  addNote: (Notes: Notetype) => void;
 }
 
-function NoteList({ notes, ondelete, onedit, onClickedBox }: Props) {
+function NoteList({ notes, deleteNote, editNote, addNote }: Props) {
   const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
   const handleADD = () => {
     setIsAddBoxOpen(true);
   };
 
-  const handleCancel = () => {
+  const handleADDCancel = () => {
     setIsAddBoxOpen(false);
   };
   return (
     <div className="notes-list" key={"note-list"}>
       <div className="add-notes" onClick={handleADD}>
-        <AddNotesModal isAddBoxOpen={isAddBoxOpen} onCancel={handleCancel} />
+        <AddNotesModal
+          isAddBoxOpen={isAddBoxOpen}
+          onCancel={handleADDCancel}
+          addnote={(Note) => addNote(Note)}
+        />
         <span>
           <img src={addImage} />
           <h3>Add Notes</h3>
@@ -34,9 +38,8 @@ function NoteList({ notes, ondelete, onedit, onClickedBox }: Props) {
         <Note
           key={note.id}
           Notes={note}
-          ondelete={(id) => ondelete(id)}
-          onedit={(id) => onedit(id)}
-          onClickedBox={(id) => onClickedBox(id)}
+          deleteNote={(id) => deleteNote(id)}
+          editNote={(id) => editNote(id)}
         ></Note>
       ))}
     </div>
