@@ -39,7 +39,7 @@
     text-align: center;
 }
 
-button{
+.btnClass  button{
     width: 129px;
     height: 41px;
     border: 1px solid black;

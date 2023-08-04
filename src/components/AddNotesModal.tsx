@@ -66,15 +66,17 @@ function AddNotesModal({
           />
           <br />
 
-          <label htmlFor="content">Description</label>
-          <br />
-          <textarea
-            onChange={(e) => setContent(e.target.value)}
-            id="content"
-            name="content"
-            value={content}
-          />
-          <br />
+          <div className="description">
+            <label htmlFor="content">Description</label>
+            <br />
+            <textarea
+              onChange={(e) => setContent(e.target.value)}
+              id="content"
+              name="content"
+              value={content}
+            />
+            <br />
+          </div>
 
           <div className="btn">
             <button
@@ -88,7 +90,7 @@ function AddNotesModal({
               Cancel
             </button>
             <button type="submit" className="btn2">
-              Submit
+              SAVE
             </button>
           </div>
         </form>

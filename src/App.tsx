@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import NoteList from "./components/NoteList";
@@ -6,15 +6,35 @@ import { Notetype } from "./services/types";
 import AddNotesModal from "./components/AddNotesModal";
 import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
 
+type DelObj = {
+  Note: Notetype | null;
+  Isopen: boolean;
+};
+
 function App() {
-  const [notes, setNotes] = useState<Notetype[]>([]);
+  const storedNotes = JSON.parse(localStorage.getItem("Notes") || "{}");
+
+  const [notes, setNotes] = useState<Notetype[]>(storedNotes);
 
   const [isEditBoxOpen, setIsEditBoxOpen] = useState(false);
-  const [isconfirmBoxOpen, setIsconfirmBoxOpen] = useState(true);
+  const [confirmBox, setConfirmBox] = useState<DelObj>({
+    Isopen: false,
+    Note: null,
+  });
   const [editingNotes, setEditingNotes] = useState<Notetype | null>(null);
 
-  const handleDelete = (id: number) => {
-    setNotes(notes.filter((note) => note.id != id));
+  const handleDeleteBox = (id: number) => {
+    const DelNotes = notes.filter((note) => note.id == id)[0];
+    if (DelNotes) {
+      setConfirmBox({ Note: DelNotes, Isopen: true });
+    }
+    // setNotes(notes.filter((note) => note.id != id));
+  };
+
+  const handleDelete = (id: number | undefined) => {
+    if (id) {
+      setNotes(notes.filter((note) => note.id != id));
+    }
   };
 
   const editTONote = (id: number) => {
@@ -34,6 +54,10 @@ function App() {
     setNotes([...notes, Note]);
   };
 
+  useEffect(() => {
+    localStorage.setItem("Notes", JSON.stringify(notes));
+  }, [notes]);
+
   return (
     <>
       <NavBar />
@@ -46,12 +70,16 @@ function App() {
       )}
       <NoteList
         notes={notes}
-        deleteNote={(id) => handleDelete(id)}
+        deleteNote={(id) => handleDeleteBox(id)}
         editNote={(id) => editTONote(id)}
         addNote={(Note) => addNotes(Note)}
       />
-      {isconfirmBoxOpen && (
-        <ConfirmDeleteModal onclick={() => setIsconfirmBoxOpen(false)} />
+      {confirmBox.Isopen && (
+        <ConfirmDeleteModal
+          Note={confirmBox.Note}
+          onDelete={(id) => handleDelete(id)}
+          onclose={() => setConfirmBox({ ...confirmBox, Isopen: false })}
+        />
       )}
     </>
   );

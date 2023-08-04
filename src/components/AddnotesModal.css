@@ -3,42 +3,75 @@ form{
     background: white;
 }
 
-textarea{
+.modaladd textarea{
+    border: none;
     resize: none;
-    border-radius: 10px;
-    
-    padding: 10px;
-    padding-top: 30px;
+    border-radius: 4px;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 20px;
+
     width: 58vw;
     height: 30vh;
 }
 
-input{
+.description{
+    border:1px solid rgba(170, 170, 170, 1);
+    margin-top: 30px;
     padding: 10px;
-    border-radius: 10px;
-    padding-top: 30px;
-    font-size: large;
-    width: 58vw;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
 }
 
-label{
+.modaladd input{
+    border: 1px solid rgba(170, 170, 170, 1);
+    padding: 10px;
+    border-radius: 4px;
+    padding-top: 30px;
+    font-size: 20px;
+    width: 58vw;
+    font-weight: 700;
+}
+
+
+.modaladd label{
     position: relative;
-    top: 30px;
+    top: 25px;
     left: 20px;
     background: white;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(145, 142, 142, 1);
+}
+
+.description > label{
+    position: relative;
+    top: 0;
+    
+    background: white;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(145, 142, 142, 1);
+
 }
 
 .btn2{
     padding: 10px 20px 10px 20px;
     font-size: 1em;
-    border: 2px solid violet;
+    border: 4px;
     margin-left: 10px;
+    background: rgba(3, 194, 255, 1);
+    color: #FFF;
+
 }
 
 .btn1{  
     padding: 10px 20px 10px 20px;
     font-size: 1em;
-    border: 2px solid violet;
+    border: 1px solid rgba(3, 194, 255, 1);
+    color: rgba(3, 194, 255, 1);
+    ;
     
 }
 
