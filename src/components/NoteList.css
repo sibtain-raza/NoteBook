@@ -18,6 +18,7 @@
       border-radius: 17px;
       margin-bottom: 1em;
       height: 210px;
+      border: 1px solid white;
     }
 
     .add-notes:hover{

@@ -13,17 +13,17 @@ interface Props {
 function Note({ Notes, deleteNote, editNote }: Props) {
   const [showModal, setShowModal] = useState(false);
   const Headline =
-    Notes.Headline.length < 28 ? (
+    Notes.Headline.length < 40 ? (
       <h5>{Notes.Headline}</h5>
     ) : (
-      <h5>{Notes.Headline.slice(0, 28)}...</h5>
+      <h5>{Notes.Headline.slice(0, 40)}...</h5>
     );
 
   const Content =
-    Notes.content.length < 175 ? (
+    Notes.content.length < 330 ? (
       <p>{Notes.content}</p>
     ) : (
-      <p>{Notes.content.slice(0, 175)}....</p>
+      <p>{Notes.content.slice(0, 330)}....</p>
     );
   return (
     <div className="notes" key={Notes.id} onClick={() => setShowModal(true)}>

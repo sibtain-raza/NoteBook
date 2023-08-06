@@ -32,6 +32,16 @@ button{
 .content{
     height: 50vh;
     overflow-y: auto;
+    
+}
+
+.content p{
+    font-size: 20px;
+    font-weight: 400;
+}
+.headline h3{
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .buttonclass{

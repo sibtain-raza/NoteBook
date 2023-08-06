@@ -47,8 +47,8 @@ form{
 
 .description > label{
     position: relative;
-    top: 0;
-    
+    top: -10px;
+    left: 0;
     background: white;
     font-weight: 400;
     font-size: 14px;

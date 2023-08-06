@@ -12,7 +12,7 @@ type DelObj = {
 };
 
 function App() {
-  const storedNotes = JSON.parse(localStorage.getItem("Notes") || "{}");
+  const storedNotes = JSON.parse(localStorage.getItem("Notes") || "[]");
 
   const [notes, setNotes] = useState<Notetype[]>(storedNotes);
 
@@ -28,7 +28,6 @@ function App() {
     if (DelNotes) {
       setConfirmBox({ Note: DelNotes, Isopen: true });
     }
-    // setNotes(notes.filter((note) => note.id != id));
   };
 
   const handleDelete = (id: number | undefined) => {
