@@ -1,5 +1,4 @@
 .modalconfirm{
-    height: 30vh;
     position: relative;
     background-color: #FFF;
     padding: 40px;
@@ -42,7 +41,6 @@
 .btnClass  button{
     width: 129px;
     height: 41px;
-    border: 1px solid black;
     margin: 20px 10px 0 10px;
     font-weight: 700;
     font-size: 18px;
