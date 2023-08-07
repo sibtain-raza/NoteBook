@@ -1,4 +1,4 @@
-import { Notetype } from "../services/types";
+import { Notetype } from "../types/types";
 import "./DisplayModal.css";
 import deleteImage from "../assets/delete-svgrepo-com.svg";
 import closeImage from "../assets/close-svgrepo-com.svg";
@@ -37,7 +37,9 @@ function DisplayModal({ note, handleClose, deleteNote, editNote }: Props) {
             <img src={closeImage} />
           </button>
         </div>
-        <h3>{note.Headline}</h3>
+        <div className="headline">
+          <h3>{note.Headline}</h3>
+        </div>
         <div className="content">
           <p>{note.content}</p>
         </div>

@@ -1,4 +1,4 @@
-import { Notetype } from "../services/types";
+import { Notetype } from "../types/types";
 import "./Notes.css";
 import deleteImage from "../assets/delete-svgrepo-com.svg";
 import editImage from "../assets/edit-svgrepo-com.svg";

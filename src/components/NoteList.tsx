@@ -1,6 +1,6 @@
 import Note from "./Notes";
 import "./NoteList.css";
-import { Notetype } from "../services/types";
+import { Notetype } from "../types/types";
 import addImage from "../assets/add-circle-svgrepo-com.svg";
 import AddNotesModal from "./AddNotesModal";
 import { useState } from "react";

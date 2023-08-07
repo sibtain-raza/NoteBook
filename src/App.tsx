@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import NoteList from "./components/NoteList";
-import { Notetype } from "./services/types";
+import { Notetype } from "./types/types";
 import AddNotesModal from "./components/AddNotesModal";
 import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
 

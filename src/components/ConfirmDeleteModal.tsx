@@ -1,6 +1,6 @@
 import "./ConfirmDeleteModal.css";
 import closeImage from "../assets/close-svgrepo-com.svg";
-import { Notetype } from "../services/types";
+import { Notetype } from "../types/types";
 
 interface Props {
   onclose: () => void;
