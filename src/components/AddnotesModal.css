@@ -32,6 +32,7 @@ form{
     font-size: 20px;
     width: 58vw;
     font-weight: 700;
+    padding-right: 18px;
 }
 
 
@@ -82,12 +83,13 @@ form{
 }
 
 .modaladd{
-    height: 60vh;
+    height: auto;
     position: relative;
     background-color: #FFF;
     padding: 50px;
     width: 60%;
     border-radius: 20px;
+    padding-bottom: 60px;
 }
 
 

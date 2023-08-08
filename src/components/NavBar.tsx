@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import bookImage from "../assets/Logo.svg";
+import bookImage from "../assets/svg/Logo.svg";
 
 function NavBar() {
   return (

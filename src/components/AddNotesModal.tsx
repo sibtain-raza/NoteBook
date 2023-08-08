@@ -34,6 +34,8 @@ function AddNotesModal({
         id: editableNote.id,
         content: content,
         Headline: heading,
+        isArchived: editableNote.isArchived || false,
+        isStarred: editableNote.isStarred || false,
       });
     }
     if (addnote) {
@@ -41,6 +43,8 @@ function AddNotesModal({
         id: Date.now(),
         content: content,
         Headline: heading,
+        isArchived: false,
+        isStarred: false,
       });
     }
     onCancel();

@@ -1,16 +1,21 @@
 import { Notetype } from "../types/types";
 import "./Notes.css";
-import deleteImage from "../assets/delete-svgrepo-com.svg";
-import editImage from "../assets/edit-svgrepo-com.svg";
+import deleteImage from "../assets/svg/delete-svgrepo-com.svg";
+import editImage from "../assets/svg/edit-svgrepo-com.svg";
+import unfilled_star from "../assets/svg/Vector_unfilled_star.svg";
+import filledStar from "../assets/svg/primary_star_filled.svg";
+
 import { useState } from "react";
 import DisplayModal from "./DisplayModal";
 interface Props {
   Notes: Notetype;
   deleteNote: (id: number) => void;
   editNote: (id: number) => void;
+  starNote: (id: number) => void;
+  tab: string;
 }
 
-function Note({ Notes, deleteNote, editNote }: Props) {
+function Note({ Notes, deleteNote, editNote, starNote, tab }: Props) {
   const [showModal, setShowModal] = useState(false);
   const Headline =
     Notes.Headline.length < 40 ? (
@@ -33,20 +38,34 @@ function Note({ Notes, deleteNote, editNote }: Props) {
           handleClose={() => setShowModal(false)}
           deleteNote={deleteNote}
           editNote={(id) => editNote(id)}
+          tab={tab}
         />
       )}
       {Headline}
       {Content}
       <div className="bottom">
-        <button
-          className="btn3 edit"
-          onClick={(event) => {
-            event.stopPropagation();
-            editNote(Notes.id);
-          }}
-        >
-          <img src={editImage} />
-        </button>
+        {tab != "archive" && (
+          <div>
+            <button
+              className="btnstar star"
+              onClick={(e) => {
+                e.stopPropagation();
+                starNote(Notes.id);
+              }}
+            >
+              <img src={Notes.isStarred ? filledStar : unfilled_star} />
+            </button>
+            <button
+              className="btn3 edit"
+              onClick={(event) => {
+                event.stopPropagation();
+                editNote(Notes.id);
+              }}
+            >
+              <img src={editImage} />
+            </button>
+          </div>
+        )}
         <button
           className="btn3 delete"
           onClick={(event) => {

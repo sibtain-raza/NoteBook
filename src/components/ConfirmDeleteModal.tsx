@@ -1,5 +1,5 @@
 import "./ConfirmDeleteModal.css";
-import closeImage from "../assets/close-svgrepo-com.svg";
+import closeImage from "../assets/svg/close-svgrepo-com.svg";
 import { Notetype } from "../types/types";
 
 interface Props {
