@@ -49,14 +49,22 @@ function App() {
     setEditingNotes(null);
   };
 
-  const starNote = (id: number) => {
+  const markNote = (id: number | undefined, mark: string) => {
     const prevNotes = [...notes];
     const index = prevNotes.findIndex((note) => note.id === id);
     if (index != -1) {
-      prevNotes[index] = {
-        ...prevNotes[index],
-        isStarred: !prevNotes[index].isStarred,
-      };
+      if (mark == "starnote") {
+        prevNotes[index] = {
+          ...prevNotes[index],
+          isStarred: !prevNotes[index].isStarred,
+        };
+      }
+      if (mark == "archive") {
+        prevNotes[index] = {
+          ...prevNotes[index],
+          isArchived: !prevNotes[index].isArchived,
+        };
+      }
     }
     setNotes(prevNotes);
   };
@@ -81,14 +89,13 @@ function App() {
           editnote={editNote}
         />
       )}
-      {console.log(tab)}
       <Tabs changeTab={(tab) => setTab(tab)} />
       <NoteList
         notes={notes}
         deleteNote={(id) => handleDeleteBox(id)}
         editNote={(id) => editTONote(id)}
         addNote={(Note) => addNotes(Note)}
-        starNote={(id) => starNote(id)}
+        starNote={(id) => markNote(id, "starnote")}
         tab={tab}
       />
       {confirmBox.Isopen && (
@@ -96,6 +103,7 @@ function App() {
           Note={confirmBox.Note}
           onDelete={(id) => handleDelete(id)}
           onclose={() => setConfirmBox({ ...confirmBox, Isopen: false })}
+          archiveNote={(id) => markNote(id, "archive")}
         />
       )}
     </>

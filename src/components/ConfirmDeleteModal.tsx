@@ -6,9 +6,10 @@ interface Props {
   onclose: () => void;
   Note: Notetype | null;
   onDelete: (id: number | undefined) => void;
+  archiveNote: (id: number | undefined) => void;
 }
 
-function ConfirmDeleteModal({ onclose, Note, onDelete }: Props) {
+function ConfirmDeleteModal({ onclose, Note, onDelete, archiveNote }: Props) {
   return (
     <div className="overlayconfirm">
       <div className="modalconfirm">
@@ -22,7 +23,16 @@ function ConfirmDeleteModal({ onclose, Note, onDelete }: Props) {
         <p>Are you sure You want to Delete the Note ?</p>
         <h5>"{Note?.Headline}"</h5>
         <div className="btnClass">
-          <button className="archiveBtn">ARCHIVE</button>
+          <button
+            className="archiveBtn"
+            onClick={(e) => {
+              onclose();
+              e.stopPropagation();
+              archiveNote(Note?.id);
+            }}
+          >
+            ARCHIVE
+          </button>
           <button
             className="deleteBtn"
             onClick={() => {
