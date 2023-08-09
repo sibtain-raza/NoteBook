@@ -19,12 +19,11 @@
       border-radius: 17px;
       margin-bottom: 1em;
       height: 198.5px;
-      border: 1px solid white;
+      border: 3px dashed rgba(140, 140, 140, 1)
     }
 
     .add-notes:hover{
       box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 1);
-      border: 1px solid black;
     }
 
     .add-notes span{

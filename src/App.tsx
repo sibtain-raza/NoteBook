@@ -89,7 +89,7 @@ function App() {
           editnote={editNote}
         />
       )}
-      <Tabs changeTab={(tab) => setTab(tab)} />
+      <Tabs changeTab={(tab) => setTab(tab)} tabs={tab} />
       <NoteList
         notes={notes}
         deleteNote={(id) => handleDeleteBox(id)}
