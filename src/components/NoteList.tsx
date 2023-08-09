@@ -30,10 +30,23 @@ function NoteList({
     setIsAddBoxOpen(false);
   };
 
-  let renderNote = notes;
-  if (tab == "star") {
-    renderNote = notes.filter((notes) => notes.isStarred == true);
+  let renderNote;
+  switch (tab) {
+    case "new":
+      renderNote = notes.filter((notes) => notes.isArchived == false);
+      break;
+    case "star":
+      renderNote = notes.filter(
+        (notes) => notes.isArchived == false && notes.isStarred == true
+      );
+      break;
+    case "archive":
+      renderNote = notes.filter((notes) => notes.isArchived == true);
+      break;
+    default:
+      renderNote = notes;
   }
+
   return (
     <div className="notes-list" key={"note-list"}>
       {tab == "new" && (

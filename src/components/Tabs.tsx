@@ -1,6 +1,6 @@
-import edit from "../assets/svg/edit-svgrepo-com.svg";
+import edit from "../assets/svg/vector-white-edit.svg";
 import archive from "../assets/svg/archive.svg";
-import star from "../assets/svg/Vector_unfilled_star.svg";
+import star from "../assets/svg/vector-white-star.svg";
 import "./Tabs.css";
 
 interface Props {

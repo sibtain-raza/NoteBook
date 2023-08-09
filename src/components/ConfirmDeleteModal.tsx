@@ -7,9 +7,18 @@ interface Props {
   Note: Notetype | null;
   onDelete: (id: number | undefined) => void;
   archiveNote: (id: number | undefined) => void;
+  tab: string;
+  restore: (id: number | undefined) => void;
 }
 
-function ConfirmDeleteModal({ onclose, Note, onDelete, archiveNote }: Props) {
+function ConfirmDeleteModal({
+  onclose,
+  Note,
+  onDelete,
+  archiveNote,
+  tab,
+  restore,
+}: Props) {
   return (
     <div className="overlayconfirm">
       <div className="modalconfirm">
@@ -22,27 +31,52 @@ function ConfirmDeleteModal({ onclose, Note, onDelete, archiveNote }: Props) {
         />
         <p>Are you sure You want to Delete the Note ?</p>
         <h5>"{Note?.Headline}"</h5>
-        <div className="btnClass">
-          <button
-            className="archiveBtn"
-            onClick={(e) => {
-              onclose();
-              e.stopPropagation();
-              archiveNote(Note?.id);
-            }}
-          >
-            ARCHIVE
-          </button>
-          <button
-            className="deleteBtn"
-            onClick={() => {
-              onDelete(Note?.id);
-              onclose();
-            }}
-          >
-            DELETE
-          </button>
-        </div>
+        {tab != "archive" && (
+          <div className="btnClass">
+            <button
+              className="archiveBtn"
+              onClick={(e) => {
+                onclose();
+                e.stopPropagation();
+                archiveNote(Note?.id);
+              }}
+            >
+              ARCHIVE
+            </button>
+            <button
+              className="deleteBtn"
+              onClick={() => {
+                onDelete(Note?.id);
+                onclose();
+              }}
+            >
+              DELETE
+            </button>
+          </div>
+        )}
+        {tab == "archive" && (
+          <div className="btnClass">
+            <button
+              className="archiveBtn"
+              onClick={(e) => {
+                onclose();
+                e.stopPropagation();
+                restore(Note?.id);
+              }}
+            >
+              RESTORE
+            </button>
+            <button
+              className="deleteBtn"
+              onClick={() => {
+                onDelete(Note?.id);
+                onclose();
+              }}
+            >
+              Confirm
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

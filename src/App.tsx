@@ -104,6 +104,8 @@ function App() {
           onDelete={(id) => handleDelete(id)}
           onclose={() => setConfirmBox({ ...confirmBox, Isopen: false })}
           archiveNote={(id) => markNote(id, "archive")}
+          tab={tab}
+          restore={(id) => markNote(id, "archive")}
         />
       )}
     </>
