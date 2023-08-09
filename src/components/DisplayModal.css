@@ -15,7 +15,8 @@
     background-color: #FFF;
     padding: 50px;
     width: 60%;
-    height: 60vh;
+    height: auto;
+    max-height: 75%;
     border-radius: 20px;
 }
 
