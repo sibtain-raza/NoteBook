@@ -5,9 +5,15 @@ function Tabs() {
   return (
     <>
       <div className="tabs filter-link">
-        <Link to="/new">New</Link>
-        <Link to="/archived">Archived</Link>
-        <Link to="/starred">Starred</Link>
+        <Link className="newTabs" to="/new">
+          New
+        </Link>
+        <Link className="archiveTabs" to="/archived">
+          Archived
+        </Link>
+        <Link className="starTabs" to="/starred">
+          Starred
+        </Link>
       </div>
       <Outlet />
     </>
