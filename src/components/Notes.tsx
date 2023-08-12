@@ -7,15 +7,16 @@ import filledStar from "../assets/svg/primary_star_filled.svg";
 
 import { useState } from "react";
 import DisplayModal from "./DisplayModal";
+import { useParams } from "react-router-dom";
 interface Props {
   Notes: Notetype;
   deleteNote: (id: number) => void;
   editNote: (id: number) => void;
   starNote: (id: number) => void;
-  tab: string;
 }
 
-function Note({ Notes, deleteNote, editNote, starNote, tab }: Props) {
+function Note({ Notes, deleteNote, editNote, starNote }: Props) {
+  const { tab } = useParams();
   const [showModal, setShowModal] = useState(false);
   const Headline =
     Notes.Headline.length < 40 ? (
@@ -44,7 +45,7 @@ function Note({ Notes, deleteNote, editNote, starNote, tab }: Props) {
       {Headline}
       {Content}
       <div className="bottom">
-        {tab != "archive" && (
+        {tab != "archived" && (
           <div>
             <button
               className="btnstar star"

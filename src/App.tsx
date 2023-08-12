@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import NoteList from "./components/NoteList";
@@ -6,6 +7,7 @@ import { Notetype } from "./types/types";
 import AddNotesModal from "./components/AddNotesModal";
 import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
 import Tabs from "./components/Tabs";
+import Home from "./components/Home";
 
 type DelObj = {
   Note: Notetype | null;
@@ -82,6 +84,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <Tabs />
       {isEditBoxOpen && (
         <AddNotesModal
           onCancel={() => setIsEditBoxOpen(false)}
@@ -89,24 +92,38 @@ function App() {
           editnote={editNote}
         />
       )}
-      <Tabs changeTab={(tab) => setTab(tab)} tabs={tab} />
-      <NoteList
-        notes={notes}
-        deleteNote={(id) => handleDeleteBox(id)}
-        editNote={(id) => editTONote(id)}
-        addNote={(Note) => addNotes(Note)}
-        starNote={(id) => markNote(id, "starnote")}
-        tab={tab}
-      />
-      {confirmBox.Isopen && (
-        <ConfirmDeleteModal
-          Note={confirmBox.Note}
-          onDelete={(id) => handleDelete(id)}
-          onclose={() => setConfirmBox({ ...confirmBox, Isopen: false })}
-          archiveNote={(id) => markNote(id, "archive")}
-          tab={tab}
-          restore={(id) => markNote(id, "archive")}
+      {/* <Tabs changeTab={(tab) => setTab(tab)} tabs={tab} /> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/:tab"
+          element={
+            <NoteList
+              notes={notes}
+              deleteNote={(id) => handleDeleteBox(id)}
+              editNote={(id) => editTONote(id)}
+              addNote={(Note) => addNotes(Note)}
+              starNote={(id) => markNote(id, "starnote")}
+            />
+          }
         />
+      </Routes>
+
+      {confirmBox.Isopen && (
+        <Routes>
+          <Route
+            path="/:tab"
+            element={
+              <ConfirmDeleteModal
+                Note={confirmBox.Note}
+                onDelete={(id) => handleDelete(id)}
+                onclose={() => setConfirmBox({ ...confirmBox, Isopen: false })}
+                archiveNote={(id) => markNote(id, "archive")}
+                restore={(id) => markNote(id, "archive")}
+              />
+            }
+          />
+        </Routes>
       )}
     </>
   );

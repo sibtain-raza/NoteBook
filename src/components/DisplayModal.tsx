@@ -16,7 +16,7 @@ function DisplayModal({ note, handleClose, deleteNote, editNote, tab }: Props) {
     <div className="overlay">
       <div className="modal">
         <div className="buttonclass">
-          {tab != "archive" && (
+          {tab != "archived" && (
             <button>
               <img
                 src={editImage}

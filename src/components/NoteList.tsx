@@ -1,4 +1,5 @@
 import Note from "./Notes";
+import { useParams } from "react-router-dom";
 import "./NoteList.css";
 import { Notetype } from "../types/types";
 import AddNotesModal from "./AddNotesModal";
@@ -10,17 +11,10 @@ interface Props {
   editNote: (id: number) => void;
   addNote: (Notes: Notetype) => void;
   starNote: (id: number) => void;
-  tab: string;
 }
 
-function NoteList({
-  notes,
-  deleteNote,
-  editNote,
-  addNote,
-  starNote,
-  tab,
-}: Props) {
+function NoteList({ notes, deleteNote, editNote, addNote, starNote }: Props) {
+  const { tab } = useParams();
   const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
   const handleADD = () => {
     setIsAddBoxOpen(true);
@@ -35,12 +29,12 @@ function NoteList({
     case "new":
       renderNote = notes.filter((notes) => notes.isArchived == false);
       break;
-    case "star":
+    case "starred":
       renderNote = notes.filter(
         (notes) => notes.isArchived == false && notes.isStarred == true
       );
       break;
-    case "archive":
+    case "archived":
       renderNote = notes.filter((notes) => notes.isArchived == true);
       break;
     default:
