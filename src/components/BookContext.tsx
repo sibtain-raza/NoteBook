@@ -17,7 +17,8 @@ function BookProvider({ children }: { children: any }) {
         },
         {
           id: 2,
-          Headline: "Understanding state Managment",
+          Headline:
+            "Understanding state Managment State Managment is a crucial part of modern web application",
           content:
             "State Managment is a crucial part of modern web application ",
         },

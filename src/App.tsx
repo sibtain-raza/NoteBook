@@ -1,13 +1,20 @@
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
+import { Route, Routes } from "react-router-dom";
+import NoteList from "./components/NoteList";
+import Tabs from "./components/Tabs";
 function App() {
   return (
     <>
       <NavBar />
-      <Home />
-      {/* <Routes>
+      <Routes>
+        <Route path="/book/:bookId" element={<Tabs />} />
+      </Routes>
+
+      <Routes>
         <Route path="/" element={<Home />} />
-      </Routes> */}
+        <Route path="/book/:bookId" element={<NoteList />} />
+      </Routes>
     </>
   );
 }

@@ -15,7 +15,7 @@ interface Props {
   starNote: (id: number) => void;
 }
 
-function Note({ Notes, deleteNote, editNote, starNote }: Props) {
+function Note({ Notes }: Props) {
   const { tab } = useParams();
   const [showModal, setShowModal] = useState(false);
   const Headline =
@@ -33,46 +33,20 @@ function Note({ Notes, deleteNote, editNote, starNote }: Props) {
     );
   return (
     <div className="notes" key={Notes.id} onClick={() => setShowModal(true)}>
-      {showModal && (
-        <DisplayModal
-          note={Notes}
-          handleClose={() => setShowModal(false)}
-          deleteNote={deleteNote}
-          editNote={(id) => editNote(id)}
-        />
-      )}
       {Headline}
       {Content}
       <div className="bottom">
         {tab != "archived" && (
           <div>
-            <button
-              className="btnstar star"
-              onClick={(e) => {
-                e.stopPropagation();
-                starNote(Notes.id);
-              }}
-            >
+            <button className="btnstar star">
               <img src={Notes.isStarred ? filledStar : unfilled_star} />
             </button>
-            <button
-              className="btn3 edit"
-              onClick={(event) => {
-                event.stopPropagation();
-                editNote(Notes.id);
-              }}
-            >
+            <button className="btn3 edit">
               <img src={editImage} />
             </button>
           </div>
         )}
-        <button
-          className="btn3 delete"
-          onClick={(event) => {
-            event.stopPropagation();
-            deleteNote(Notes.id);
-          }}
-        >
+        <button className="btn3 delete">
           <img src={deleteImage} />
         </button>
       </div>
