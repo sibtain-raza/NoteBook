@@ -1,17 +1,18 @@
-import { Notetype } from "../types/types";
+import { Notetype } from "../types/type";
 import "./DisplayModal.css";
 import deleteImage from "../assets/svg/delete-svgrepo-com.svg";
 import closeImage from "../assets/svg/close-svgrepo-com.svg";
 import editImage from "../assets/svg/edit-svgrepo-com.svg";
+import { useParams } from "react-router-dom";
 interface Props {
   note: Notetype;
   handleClose: () => void;
   deleteNote: (id: number) => void;
   editNote: (id: number) => void;
-  tab: string;
 }
 
-function DisplayModal({ note, handleClose, deleteNote, editNote, tab }: Props) {
+function DisplayModal({ note, handleClose, deleteNote, editNote }: Props) {
+  const { tab } = useParams();
   return (
     <div className="overlay">
       <div className="modal">

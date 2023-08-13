@@ -1,4 +1,4 @@
-import { Notetype } from "../types/types";
+import { Notetype } from "../types/type";
 import "./Notes.css";
 import deleteImage from "../assets/svg/delete-svgrepo-com.svg";
 import editImage from "../assets/svg/edit-svgrepo-com.svg";
@@ -39,7 +39,6 @@ function Note({ Notes, deleteNote, editNote, starNote }: Props) {
           handleClose={() => setShowModal(false)}
           deleteNote={deleteNote}
           editNote={(id) => editNote(id)}
-          tab={tab}
         />
       )}
       {Headline}

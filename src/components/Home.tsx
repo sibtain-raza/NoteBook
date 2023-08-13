@@ -1,5 +1,12 @@
+import "./Home.css";
 function Home() {
-  return <div>Welcome to Notebook</div>;
+  return (
+    <>
+      <div className="home">
+        <h1>Welcome to Notebook</h1>
+      </div>
+    </>
+  );
 }
 
 export default Home;

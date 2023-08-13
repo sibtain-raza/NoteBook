@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import "./ConfirmDeleteModal.css";
 import closeImage from "../assets/svg/close-svgrepo-com.svg";
-import { Notetype } from "../types/types";
+import { Notetype } from "../types/type";
 
 interface Props {
   onclose: () => void;

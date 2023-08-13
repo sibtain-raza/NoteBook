@@ -1,7 +1,7 @@
 import Note from "./Notes";
 import { useParams } from "react-router-dom";
 import "./NoteList.css";
-import { Notetype } from "../types/types";
+import { Notetype } from "../types/type";
 import AddNotesModal from "./AddNotesModal";
 import { useState } from "react";
 
@@ -63,7 +63,6 @@ function NoteList({ notes, deleteNote, editNote, addNote, starNote }: Props) {
           deleteNote={(id) => deleteNote(id)}
           editNote={(id) => editNote(id)}
           starNote={(id) => starNote(id)}
-          tab={tab}
         ></Note>
       ))}
     </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AddnotesModal.css";
-import { Notetype } from "../types/types";
+import { Notetype } from "../types/type";
 interface Props {
   onCancel: () => void;
   addnote?: (Notes: Notetype) => void;
