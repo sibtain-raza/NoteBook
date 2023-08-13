@@ -8,10 +8,10 @@ interface Props {
   note: Notetype;
   handleClose: () => void;
   deleteNote: (id: number) => void;
-  editNote: (id: number) => void;
+  editNotes: (id: number) => void;
 }
 
-function DisplayModal({ note, handleClose, deleteNote, editNote }: Props) {
+function DisplayModal({ note, handleClose, deleteNote, editNotes }: Props) {
   const { tab } = useParams();
   return (
     <div className="overlay">
@@ -23,7 +23,7 @@ function DisplayModal({ note, handleClose, deleteNote, editNote }: Props) {
                 src={editImage}
                 onClick={(e) => {
                   e.stopPropagation();
-                  editNote(note.id);
+                  editNotes(note.id);
                   handleClose();
                 }}
               />

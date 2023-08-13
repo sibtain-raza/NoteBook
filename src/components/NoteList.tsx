@@ -8,11 +8,13 @@ import { Notetype } from "../types/type";
 
 function NoteList() {
   const { tab, bookId } = useParams();
-  const { books, setBooks } = useBooks();
+  const { books, addNote, findNote, editNote } = useBooks();
   const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
-  const book = books.find(
-    (book: { id: string | undefined }) => book.id === bookId
-  );
+  const [isEditBoxOpen, setIsEditBoxOpen] = useState(false);
+  const [editableNote, setEditableNote] = useState(null);
+
+  const { book } = findNote(bookId);
+
   const Notes = book.notes;
   let renderNotes;
   switch (tab) {
@@ -36,19 +38,30 @@ function NoteList() {
       renderNotes = Notes;
   }
 
+  const editToNotes = (id: number) => {
+    setIsEditBoxOpen(true);
+    const { book, note } = findNote(bookId, id);
+    if (note) setEditableNote(note);
+  };
+
   const addNotes = (Note: Notetype) => {
-    setBooks((books: any[]) => {
-      return books.map((book) => {
-        if (book.id == bookId) {
-          return { ...book, notes: [...book.notes, Note] };
-        }
-        return book;
-      });
-    });
+    addNote(bookId, Note);
+  };
+
+  const editNotes = (Note: Notetype) => {
+    editNote(bookId, Note.id, Note);
+    setEditableNote(null);
   };
 
   return (
     <div className="notes-list" key={"note-list"}>
+      {isEditBoxOpen && (
+        <AddNotesModal
+          onCancel={() => setIsEditBoxOpen(false)}
+          editableNote={editableNote}
+          editnote={editNotes}
+        />
+      )}
       <div
         className="add-notes"
         onClick={() => {
@@ -80,7 +93,7 @@ function NoteList() {
             <Note
               key={note.id}
               Notes={note}
-              editNote={(id) => console.log(id)}
+              editNotes={(id) => editToNotes(id)}
             ></Note>
           )
       )}

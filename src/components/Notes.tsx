@@ -8,16 +8,19 @@ import filledStar from "../assets/svg/primary_star_filled.svg";
 import { useState } from "react";
 import DisplayModal from "./DisplayModal";
 import { useParams } from "react-router-dom";
+import { useBooks } from "./BookContext";
 interface Props {
   Notes: Notetype;
   deleteNote: (id: number) => void;
-  editNote: (id: number) => void;
+  editNotes: (id: number) => void;
   starNote: (id: number) => void;
 }
 
-function Note({ Notes, editNote }: Props) {
+function Note({ Notes, editNotes }: Props) {
   const { tab, bookId } = useParams();
+  const { findNote, editNote } = useBooks();
   const [showModal, setShowModal] = useState(false);
+
   const Headline =
     Notes.Headline.length < 40 ? (
       <h5>{Notes.Headline}</h5>
@@ -42,22 +45,32 @@ function Note({ Notes, editNote }: Props) {
           deleteNote={() => {
             console.log("deleted");
           }}
-          editNote={() => console.log("edited")}
+          editNotes={(id) => {
+            console.log(id);
+            editNotes(id);
+          }}
         />
       )}
+
       {Headline}
       {Content}
       <div className="bottom">
         {tab != "archived" && (
           <div>
-            <button className="btnstar star">
+            <button
+              className="btnstar star"
+              onClick={(e) => {
+                e.stopPropagation();
+                editNote(bookId, Notes.id, { isStarred: !Notes.isStarred });
+              }}
+            >
               <img src={Notes.isStarred ? filledStar : unfilled_star} />
             </button>
             <button
               className="btn3 edit"
               onClick={(e) => {
                 e.stopPropagation();
-                editNote(Notes.id);
+                editNotes(Notes.id);
               }}
             >
               <img src={editImage} />

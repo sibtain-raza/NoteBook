@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import { booktype } from "../types/type";
+import { Notetype, booktype } from "../types/type";
 
 export const BookContext = createContext<any>([]);
 
@@ -43,8 +43,71 @@ function BookProvider({ children }: { children: any }) {
   //DUMMY Book
 
   const [books, setBooks] = useState<booktype[]>([...Books]);
+  const addNote = (bookId: string, newNote: Notetype) => {
+    setBooks((books) =>
+      books.map((book) =>
+        book.id === bookId ? { ...book, notes: [...book.notes, newNote] } : book
+      )
+    );
+  };
+  const editNote = (
+    bookId: string,
+    noteId: number,
+    updatedFields: Partial<Notetype>
+  ) => {
+    setBooks((books) => {
+      return books.map((book) => {
+        if (book.id === bookId) {
+          return {
+            ...book,
+            notes: book.notes.map((note) =>
+              note.id === noteId ? { ...note, ...updatedFields } : note
+            ),
+          };
+        }
+        return book;
+      });
+    });
+  };
+
+  const deleteNote = (bookId: string, noteId: number) => {
+    setBooks((books) =>
+      books.map((book) => {
+        if (book.id === bookId) {
+          return {
+            ...book,
+            notes: book.notes.filter((note) => note.id !== noteId),
+          };
+        }
+        return book;
+      })
+    );
+  };
+
+  const addBook = (newBook: booktype) => {
+    setBooks((book) => [...book, newBook]);
+  };
+
+  const findNote = (bookId: string, noteId?: number) => {
+    const book = books.find((book) => book.id == bookId);
+    if (noteId && book) {
+      const note = book?.notes.find((note) => note.id === noteId);
+      return { book, note };
+    }
+    return { book };
+  };
   return (
-    <BookContext.Provider value={{ books, setBooks }}>
+    <BookContext.Provider
+      value={{
+        books,
+        setBooks,
+        addNote,
+        editNote,
+        deleteNote,
+        addBook,
+        findNote,
+      }}
+    >
       {children}
     </BookContext.Provider>
   );
