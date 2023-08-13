@@ -1,14 +1,14 @@
 import { booktype } from "../types/type";
 import { useParams } from "react-router-dom";
 import Book from "./Book";
+import { useBooks } from "./BookContext";
 
-interface Props {
-  books: booktype[];
-}
-
-function BookList({ books }: Props) {
+function BookList() {
+  const { books } = useBooks();
   const { id } = useParams();
-  const DisplayBook = books.find((book) => id && book.id == +id);
+  const DisplayBook = books.find(
+    (book: booktype | undefined) => id && book && book.id == id
+  );
   return (
     <>
       <Book book={DisplayBook} />

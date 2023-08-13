@@ -1,19 +1,21 @@
-import { booktype } from "../types/type";
 import { Link, Outlet } from "react-router-dom";
+import { useBooks } from "./BookContext";
+import { booktype } from "../types/type";
 
-interface Props {
-  books: booktype[];
-}
-
-function BookList({ books }: Props) {
+function BookList() {
+  const { books } = useBooks();
+  console.log(books);
   return (
     <>
       <div style={{ display: "flex", gap: "10px" }}>
-        {books.map((book) => (
-          <Link key={book.id} to={`/book/${book.id}`}>
-            BOOK {book.id}
-          </Link>
-        ))}
+        {books.map(
+          (book: booktype | undefined) =>
+            book && (
+              <Link key={book.id} to={`/book/${book.id}`}>
+                BOOK {book.id}
+              </Link>
+            )
+        )}
       </div>
       <Outlet />
     </>

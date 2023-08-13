@@ -8,7 +8,7 @@ export type Notetype= {
 }
 
 export type booktype ={
-    id:number;
-    title:string;
+    id:string;
+    name:string;
     notes:Notetype[];
 }
