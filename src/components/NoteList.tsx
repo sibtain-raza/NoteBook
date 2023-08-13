@@ -5,13 +5,23 @@ import { useBooks } from "./BookContext";
 import { useState } from "react";
 import AddNotesModal from "./AddNotesModal";
 import { Notetype } from "../types/type";
+import ConfirmDeleteModal from "./ConfirmDeleteModal";
+
+type DelObj = {
+  Note: Notetype | null;
+  IsOpen: Boolean;
+};
 
 function NoteList() {
   const { tab, bookId } = useParams();
-  const { books, addNote, findNote, editNote } = useBooks();
+  const { addNote, findNote, editNote, deleteNote } = useBooks();
   const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
   const [isEditBoxOpen, setIsEditBoxOpen] = useState(false);
   const [editableNote, setEditableNote] = useState(null);
+  const [confirmBox, setConfrimBox] = useState<DelObj>({
+    IsOpen: false,
+    Note: null,
+  });
 
   const { book } = findNote(bookId);
 
@@ -40,7 +50,7 @@ function NoteList() {
 
   const editToNotes = (id: number) => {
     setIsEditBoxOpen(true);
-    const { book, note } = findNote(bookId, id);
+    const { note } = findNote(bookId, id);
     if (note) setEditableNote(note);
   };
 
@@ -53,6 +63,13 @@ function NoteList() {
     setEditableNote(null);
   };
 
+  const handleDeleteBox = (id: number) => {
+    const DelNotes = Notes.find((note: { id: number }) => note.id === id);
+    if (DelNotes) {
+      setConfrimBox({ Note: DelNotes, IsOpen: true });
+    }
+  };
+
   return (
     <div className="notes-list" key={"note-list"}>
       {isEditBoxOpen && (
@@ -60,6 +77,21 @@ function NoteList() {
           onCancel={() => setIsEditBoxOpen(false)}
           editableNote={editableNote}
           editnote={editNotes}
+        />
+      )}
+      {confirmBox.IsOpen && (
+        <ConfirmDeleteModal
+          Note={confirmBox.Note}
+          onDelete={(id) => {
+            deleteNote(bookId, id);
+          }}
+          onclose={() => setConfrimBox({ ...confirmBox, IsOpen: false })}
+          archiveNote={(id) => {
+            editNote(bookId, id, { isArchived: true });
+          }}
+          restore={(id) => {
+            editNote(bookId, id, { isArchived: false });
+          }}
         />
       )}
       <div
@@ -94,6 +126,7 @@ function NoteList() {
               key={note.id}
               Notes={note}
               editNotes={(id) => editToNotes(id)}
+              deleteNote={(id) => handleDeleteBox(id)}
             ></Note>
           )
       )}

@@ -10,17 +10,19 @@ import DisplayModal from "./DisplayModal";
 import { useParams } from "react-router-dom";
 import { useBooks } from "./BookContext";
 interface Props {
-  Notes: Notetype;
+  Notes: Notetype | undefined;
   deleteNote: (id: number) => void;
   editNotes: (id: number) => void;
   starNote: (id: number) => void;
 }
 
-function Note({ Notes, editNotes }: Props) {
+function Note({ Notes, editNotes, deleteNote }: Props) {
   const { tab, bookId } = useParams();
-  const { findNote, editNote } = useBooks();
+  const { editNote } = useBooks();
   const [showModal, setShowModal] = useState(false);
-
+  if (!Notes) {
+    return null;
+  }
   const Headline =
     Notes.Headline.length < 40 ? (
       <h5>{Notes.Headline}</h5>
@@ -77,7 +79,13 @@ function Note({ Notes, editNotes }: Props) {
             </button>
           </div>
         )}
-        <button className="btn3 delete">
+        <button
+          className="btn3 delete"
+          onClick={(e) => {
+            e.stopPropagation();
+            deleteNote(Notes.id);
+          }}
+        >
           <img src={deleteImage} />
         </button>
       </div>
