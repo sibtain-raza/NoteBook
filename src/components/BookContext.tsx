@@ -14,6 +14,8 @@ function BookProvider({ children }: { children: any }) {
           id: 1,
           Headline: "Introduction to React",
           content: "React is a popular library for building user interface ",
+          isStarred: true,
+          isArchived: false,
         },
         {
           id: 2,
@@ -21,6 +23,8 @@ function BookProvider({ children }: { children: any }) {
             "Understanding state Managment State Managment is a crucial part of modern web application",
           content:
             "State Managment is a crucial part of modern web application ",
+          isArchived: true,
+          isStarred: false,
         },
       ],
     },

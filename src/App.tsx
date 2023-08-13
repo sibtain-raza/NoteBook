@@ -8,12 +8,12 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route path="/book/:bookId" element={<Tabs />} />
+        <Route path="/book/:bookId?/*" element={<Tabs />} />
       </Routes>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/book/:bookId" element={<NoteList />} />
+        <Route path="/book/:bookId?/:tab?" element={<NoteList />} />
       </Routes>
     </>
   );
