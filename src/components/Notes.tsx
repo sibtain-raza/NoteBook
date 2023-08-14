@@ -13,7 +13,6 @@ interface Props {
   Notes: Notetype | undefined;
   deleteNote: (id: number) => void;
   editNotes: (id: number) => void;
-  starNote: (id: number) => void;
 }
 
 function Note({ Notes, editNotes, deleteNote }: Props) {
@@ -45,7 +44,7 @@ function Note({ Notes, editNotes, deleteNote }: Props) {
             setShowModal(false);
           }}
           deleteNote={() => {
-            console.log("deleted");
+            deleteNote(Notes.id);
           }}
           editNotes={(id) => {
             console.log(id);
