@@ -1,48 +1,20 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import { Notetype, booktype } from "../types/type";
 
 export const BookContext = createContext<any>([]);
 
 function BookProvider({ children }: { children: any }) {
   //dummy Book
-  const Books: booktype[] = [
-    {
-      id: "Book1",
-      name: "My first Book",
-      notes: [
-        {
-          id: 1,
-          Headline: "Introduction to React",
-          content: "React is a popular library for building user interface ",
-          isStarred: true,
-          isArchived: false,
-        },
-        {
-          id: 2,
-          Headline:
-            "Understanding state Managment State Managment is a crucial part of modern web application",
-          content:
-            "State Managment is a crucial part of modern web application ",
-          isArchived: true,
-          isStarred: false,
-        },
-      ],
-    },
-    {
-      id: "Book2",
-      name: "Personal Thought",
-      notes: [
-        {
-          id: 3,
-          Headline: "my Favorite Hobbies",
-          content: "I love exploring , biking, hiking and cooking",
-        },
-      ],
-    },
-  ];
-  //DUMMY Book
 
-  const [books, setBooks] = useState<booktype[]>([...Books]);
+  //DUMMY Book
+  const savedBook = localStorage.getItem("books");
+  const ParseBook = savedBook ? JSON.parse(savedBook) : [];
+  const [books, setBooks] = useState<booktype[]>(ParseBook);
+
+  useEffect(() => {
+    localStorage.setItem("books", JSON.stringify(books));
+  }, [books]);
+
   const addNote = (bookId: string, newNote: Notetype) => {
     setBooks((books) =>
       books.map((book) =>
@@ -96,6 +68,7 @@ function BookProvider({ children }: { children: any }) {
     }
     return { book };
   };
+
   return (
     <BookContext.Provider
       value={{

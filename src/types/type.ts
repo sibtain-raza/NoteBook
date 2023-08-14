@@ -10,5 +10,6 @@ export type Notetype= {
 export type booktype ={
     id:string;
     name:string;
+    image_url:string;
     notes:Notetype[];
 }

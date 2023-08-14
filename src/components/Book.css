@@ -16,6 +16,14 @@
 
 }
 
+.book button{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    background: transparent;
+
+}
+
 .bottom{
     position: absolute;
     right: 8px;
