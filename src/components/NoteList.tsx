@@ -82,7 +82,7 @@ function NoteList() {
       {confirmBox.IsOpen && (
         <ConfirmDeleteModal
           Note={confirmBox.Note}
-          onDelete={(id) => {
+          onDeleteNote={(id) => {
             deleteNote(bookId, id);
           }}
           onclose={() => setConfrimBox({ ...confirmBox, IsOpen: false })}

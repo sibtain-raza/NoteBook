@@ -16,6 +16,10 @@
 
 }
 
+.book-link{
+    color: white;
+    height: 100%;
+}
 .book button{
     position: absolute;
     right: 10px;

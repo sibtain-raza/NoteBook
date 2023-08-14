@@ -69,6 +69,10 @@ function BookProvider({ children }: { children: any }) {
     return { book };
   };
 
+  const deleteBook = (bookId: string) => {
+    setBooks(books.filter((book) => book.id !== bookId));
+  };
+
   return (
     <BookContext.Provider
       value={{
@@ -79,6 +83,7 @@ function BookProvider({ children }: { children: any }) {
         deleteNote,
         addBook,
         findNote,
+        deleteBook,
       }}
     >
       {children}
