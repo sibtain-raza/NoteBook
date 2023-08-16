@@ -96,24 +96,26 @@ function NoteList() {
           }}
         />
       )}
-      <div
-        className="add-notes"
-        onClick={() => {
-          setIsAddBoxOpen(true);
-        }}
-      >
-        {isAddBoxOpen && (
-          <AddNotesModal
-            onCancel={() => {
-              setIsAddBoxOpen(false);
-            }}
-            addnote={(Note) => addNotes(Note)}
-          />
-        )}
-        <span>
-          <h3>+ ADD NEW</h3>
-        </span>
-      </div>
+      {tab != "archived" && (
+        <div
+          className="add-notes"
+          onClick={() => {
+            setIsAddBoxOpen(true);
+          }}
+        >
+          {isAddBoxOpen && (
+            <AddNotesModal
+              onCancel={() => {
+                setIsAddBoxOpen(false);
+              }}
+              addnote={(Note) => addNotes(Note)}
+            />
+          )}
+          <span>
+            <h3>+ ADD NEW</h3>
+          </span>
+        </div>
+      )}
 
       {renderNotes.map(
         (note: {
