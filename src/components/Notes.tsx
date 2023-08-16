@@ -36,7 +36,11 @@ function Note({ Notes, editNotes, deleteNote }: Props) {
       <p>{Notes.content.slice(0, 330)}....</p>
     );
   return (
-    <div className="notes" key={Notes.id} onClick={() => setShowModal(true)}>
+    <div
+      className="note--container"
+      key={Notes.id}
+      onClick={() => setShowModal(true)}
+    >
       {showModal && (
         <DisplayModal
           note={Notes}
@@ -53,9 +57,11 @@ function Note({ Notes, editNotes, deleteNote }: Props) {
         />
       )}
 
-      {Headline}
-      {Content}
-      <div className="bottom">
+      <div className="note">
+        {Headline}
+        {Content}
+      </div>
+      <div className="note--action">
         {tab != "archived" && (
           <div>
             <button
