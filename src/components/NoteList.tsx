@@ -118,8 +118,8 @@ function NoteList() {
       {renderNotes.map(
         (note: {
           id: any;
-          content?: string;
-          Headline?: string;
+          content: string;
+          Headline: string;
           isArchived?: boolean | undefined;
           isStarred?: boolean | undefined;
         }) =>
