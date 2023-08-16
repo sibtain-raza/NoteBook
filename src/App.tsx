@@ -8,6 +8,7 @@ function App() {
     <>
       <NavBar />
       <Routes>
+        <Route path="/" element={<></>} />
         <Route path="/book/:bookId?/*" element={<Tabs />} />
       </Routes>
 

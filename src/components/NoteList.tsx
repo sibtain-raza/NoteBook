@@ -45,7 +45,9 @@ function NoteList() {
       );
       break;
     default:
-      renderNotes = Notes;
+      renderNotes = Notes.filter(
+        (note: { isArchived: boolean }) => note.isArchived == false
+      );
   }
 
   const editToNotes = (id: number) => {

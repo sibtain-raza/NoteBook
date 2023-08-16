@@ -28,16 +28,6 @@
 
 }
 
-.bottom{
-    position: absolute;
-    right: 8px;
-    bottom: 2px;
-    display: inline-flex;
-    max-width: fit-content;
-    max-height: fit-content;
-    justify-content: space-around;
-    padding: 0;
-}
 
 .book:hover{
 box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 1);
@@ -57,10 +47,6 @@ overflow-wrap: break-word;
 hyphens: auto;
 }
 
-.btn3{
-background: white;
-border: none;
-}
 
 img{
 width: 20px;
