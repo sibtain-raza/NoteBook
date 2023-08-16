@@ -96,7 +96,7 @@ function NoteList() {
           }}
         />
       )}
-      {tab != "archived" && (
+      {tab == "new" && (
         <div
           className="add-notes"
           onClick={() => {
